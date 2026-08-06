@@ -1,11 +1,7 @@
 package com.example.api.services;
 
-import com.example.api.entity.Transacao;
 import com.example.api.repository.TransacaoRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 
 @Service
 public class TransacaoService {

@@ -11,12 +11,18 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)// chave primaria
     private Long id;
 
+    @Column(name = "data", nullable = false)
     private java.time.LocalDate data;
 
+
     @ManyToOne
-    @JoinColumn(name="tipos", nullable = false )// nomeio a coluna e dou caracteristicas a elas.
-    // cria uma coluna na tabela de transacoes que contem a FK de tipos
-    private Tipo tipoTransacao;
+    @JoinColumn(name="tipo_id", nullable = false )// nomeio a coluna e dou caracteristicas a elas.
+    // cria uma coluna na tabela transacoes com o id de tipos
+    private Tipo tipo_id;
+
+    @ManyToOne
+    @JoinColumn(name="usuario_id", nullable = false )
+    private Usuario usuario_id;
 
     @Column(name= "valor", nullable = false)
     private Double valor;
@@ -25,8 +31,8 @@ public class Transacao {
     public Transacao() {
     }
 
-    public Transacao(Tipo tipoTransacao, Double valor) {
-        this.tipoTransacao = tipoTransacao;
+    public Transacao(Tipo tipoTransacao_id, Double valor) {
+        this.tipo_id = tipoTransacao_id;
         this.valor = valor;
     }
 
@@ -40,12 +46,12 @@ public class Transacao {
         this.id = id;
     }
 
-    public Tipo getTipoTransacao() {
-        return tipoTransacao;
+    public Tipo getTipo_id() {
+        return tipo_id;
     }
 
-    public void setTipoTransacao(Tipo tipoTransacao) {
-        this.tipoTransacao = tipoTransacao;
+    public void setTipo_id(Tipo tipo_id) {
+        this.tipo_id = tipo_id;
     }
 
     public Double getValor() {
@@ -54,6 +60,14 @@ public class Transacao {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public Usuario getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(Usuario usuario_id) {
+        this.usuario_id = usuario_id;
     }
 
 }
