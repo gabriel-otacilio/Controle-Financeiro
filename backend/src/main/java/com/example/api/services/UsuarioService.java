@@ -1,7 +1,11 @@
 package com.example.api.services;
 
+import com.example.api.dto.TransacaoDTO;
+import com.example.api.dto.UsuarioDTO;
 import com.example.api.entity.Tipo;
+import com.example.api.entity.Usuario;
 import com.example.api.entity.Transacao;
+import com.example.api.entity.Usuario;
 import com.example.api.repository.TipoRepository;
 import com.example.api.repository.TransacaoRepository;
 import com.example.api.repository.UsuarioRepository;
@@ -9,6 +13,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -23,17 +28,32 @@ public class UsuarioService {
         this.tipoRepository = tipoRepository;
     }
 
+    @Transactional
+    public Usuario faz_usuario(UsuarioDTO usuarioDTO){
+        String nome = usuarioDTO.nome;
+        Usuario usuarioNovo = new Usuario(nome, 0.0);
+        usuarioRepository.save(usuarioNovo);
+        System.out.println("Usuario criado com sucesso");
+        return usuarioNovo;
+    }
+
+    public List<Usuario> consultarUsuarios(){
+        return usuarioRepository.findAll();
+    }
+
 
     @Transactional
     // necessario quando for fazer alguma mudança no banco
+    public Transacao FazerTransacao(TransacaoDTO transacaoDTO, Long id_usuario){
+        Usuario usuario = usuarioRepository.findById(id_usuario).orElseThrow();
+        Double valor = transacaoDTO.valor;
+        Tipo tipoTransacao = tipoRepository.findByNome(transacaoDTO.nomeTipo);
 
-    public Transacao FazerTransacao(Double valor, Tipo tipoTransacao){
-        // valido as entradas
         if (tipoTransacao == null || valor == null){
             throw new IllegalArgumentException("tipo de transação ou valor nao válidos");
         }
 
-        Transacao transacao = new Transacao(tipoTransacao, valor);
+        Transacao transacao = new Transacao(tipoTransacao, valor,usuario);
         transacaoRepository.save(transacao);
         System.out.println("transação feita com sucesso");
         // crio e salvo a transação
@@ -42,7 +62,7 @@ public class UsuarioService {
 
 
     public List<Transacao> consultarHistorico(Long id_usuario){
-        return transacaoRepository.findByUsuario_id(id_usuario);
+        return transacaoRepository.findByUsuarioId(id_usuario);
     }
 
     @Transactional
@@ -63,9 +83,12 @@ public class UsuarioService {
 
     // consultar gastos por tipo
     public List<Transacao> consultarGastosPorTipo(Long id_usuario, Long tipo_id){
-        return transacaoRepository.findByTipo_id(tipo_id);
+        return transacaoRepository.findByTipoId(tipo_id);
     }
 
-    // filtrar gastos por valor
+    public List<Transacao> consultarGastosPorValor(Long id_usuario, Double valor){
+        return transacaoRepository.findByValor(valor);
+    }
+
 
 }

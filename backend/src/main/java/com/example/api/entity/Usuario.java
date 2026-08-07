@@ -14,15 +14,14 @@ public class Usuario {
     private long id;
     
     @Column(name = "saldo", nullable = false)
-    private String saldo;
+    private Double saldo;
 
     // Constructors
     public Usuario() {
     }
 
-    public Usuario(String nome, long id, String saldo) {
+    public Usuario(String nome, Double saldo) {
         this.nome = nome;
-        this.id = id;
         this.saldo = saldo;
     }
 
@@ -43,11 +42,11 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(String saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 }

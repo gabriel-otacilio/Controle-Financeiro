@@ -1,0 +1,10 @@
+### post pra criar um usuario --- funcional
+POST {{endpoint_base}}/faz_usuario
+Content-Type: application/json
+
+{
+  "nome": "maria rita "
+}
+
+### get pra consultar usuarios ---funcional
+GET {{endpoint_base}}/usuarios
