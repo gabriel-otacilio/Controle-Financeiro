@@ -14,11 +14,11 @@ public class Transacao {
     @ManyToOne
     @JoinColumn(name="tipo_id", nullable = false )// nomeio a coluna e dou caracteristicas a elas.
     // cria uma coluna na tabela transacoes com o id de tipos
-    private Tipo tipoId;
+    private Tipo tipo;
 
     @ManyToOne
     @JoinColumn(name="usuario_id", nullable = false )
-    private Usuario usuarioId;
+    private Usuario usuario;
 
     @Column(name= "valor", nullable = false)
     private Double valor;
@@ -27,10 +27,10 @@ public class Transacao {
     public Transacao() {
     }
 
-    public Transacao(Tipo tipoTransacao_id, Double valor, Usuario usuario_id) {
-        this.tipoId = tipoTransacao_id;
+    public Transacao(Tipo tipoTransacao, Double valor, Usuario usuario) {
+        this.tipo = tipoTransacao;
         this.valor = valor;
-        this.usuarioId = usuario_id;
+        this.usuario = usuario;
     }
 
 
@@ -44,11 +44,11 @@ public class Transacao {
     }
 
     public Tipo getTipo_id() {
-        return tipoId;
+        return tipo;
     }
 
     public void setTipo_id(Tipo tipo_id) {
-        this.tipoId = tipo_id;
+        this.tipo = tipo_id;
     }
 
     public Double getValor() {
@@ -60,11 +60,11 @@ public class Transacao {
     }
 
     public Usuario getUsuario_id() {
-        return usuarioId;
+        return usuario;
     }
 
-    public void setUsuario_id(Usuario usuario_id) {
-        this.usuarioId = usuario_id;
+    public void setUsuario_id(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 }

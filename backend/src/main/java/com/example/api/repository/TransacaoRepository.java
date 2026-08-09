@@ -15,9 +15,12 @@ public interface TransacaoRepository extends JpaRepository<Transacao, Long> {// 
     public List <Transacao> findByValor(Double valor);
     // O spring ja converte automaticamente pra query necessaria
 
-    public List<Transacao> findByUsuarioId(Long id);
+    public List<Transacao> findByUsuario_Id(Long id);
 
-    public List<Transacao> findByTipoId(Long id);
+    public List<Transacao> findByTipo(Long id);
+
+
+
 
     // os nomes dos metodos devem ser iguais ao nome do atributo da entidade, não ao da coluna
 

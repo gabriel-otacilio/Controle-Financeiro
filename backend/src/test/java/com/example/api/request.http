@@ -1,3 +1,5 @@
+@id = 1
+
 ### post pra criar um usuario --- funcional
 POST {{endpoint_base}}/faz_usuario
 Content-Type: application/json
@@ -8,3 +10,30 @@ Content-Type: application/json
 
 ### get pra consultar usuarios ---funcional
 GET {{endpoint_base}}/usuarios
+
+### get pra consultar transaçoes
+
+GET {{endpoint_base}}/{{id}}/transacoes
+
+
+### get pra consultar tipos
+
+GET {{endpoint_base}}/tipos
+
+### post pra fazer um tipo
+POST {{endpoint_base}}/faz_tipo
+Content-Type: application/json
+
+{
+  "nome": "acidentes "
+}
+
+### post pra fazer trasações
+
+POST {{endpoint_base}}/{{id}}/faz_transacao
+Content-Type: application/json
+
+{
+  "valor": 3000.0,
+  "nome": "acidentes"
+}

@@ -45,9 +45,14 @@ public class UsuarioService {
     @Transactional
     // necessario quando for fazer alguma mudança no banco
     public Transacao FazerTransacao(TransacaoDTO transacaoDTO, Long id_usuario){
-        Usuario usuario = usuarioRepository.findById(id_usuario).orElseThrow();
+
         Double valor = transacaoDTO.valor;
         Tipo tipoTransacao = tipoRepository.findByNome(transacaoDTO.nomeTipo);
+        // ta retornando nulo
+        System.out.println(tipoTransacao
+        );
+        System.out.println(valor);
+        Usuario usuario = usuarioRepository.findById(id_usuario).orElseThrow();
 
         if (tipoTransacao == null || valor == null){
             throw new IllegalArgumentException("tipo de transação ou valor nao válidos");
@@ -57,12 +62,13 @@ public class UsuarioService {
         transacaoRepository.save(transacao);
         System.out.println("transação feita com sucesso");
         // crio e salvo a transação
+
         return transacao;
     }
 
 
     public List<Transacao> consultarHistorico(Long id_usuario){
-        return transacaoRepository.findByUsuarioId(id_usuario);
+        return transacaoRepository.findByUsuario_Id(id_usuario);
     }
 
     @Transactional
@@ -83,7 +89,7 @@ public class UsuarioService {
 
     // consultar gastos por tipo
     public List<Transacao> consultarGastosPorTipo(Long id_usuario, Long tipo_id){
-        return transacaoRepository.findByTipoId(tipo_id);
+        return transacaoRepository.findByTipo(tipo_id);
     }
 
     public List<Transacao> consultarGastosPorValor(Long id_usuario, Double valor){

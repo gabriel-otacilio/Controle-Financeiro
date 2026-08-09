@@ -10,7 +10,7 @@ public class Tipo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false, length = 100)
+    @Column(name = "nome", unique = true, nullable = false, length = 100)
     private String nome;
 
     public Tipo(String nome) {
