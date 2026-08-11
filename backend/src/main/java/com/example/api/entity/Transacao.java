@@ -1,6 +1,7 @@
 package com.example.api.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -10,6 +11,9 @@ public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)// chave primaria
     private Long id;
+
+    @Column(name = "data", nullable = false)
+    private LocalDateTime data ;
 
     @ManyToOne
     @JoinColumn(name="tipo_id", nullable = false )// nomeio a coluna e dou caracteristicas a elas.
@@ -31,6 +35,7 @@ public class Transacao {
         this.tipo = tipoTransacao;
         this.valor = valor;
         this.usuario = usuario;
+        this.data = LocalDateTime.now();
     }
 
 
@@ -43,11 +48,11 @@ public class Transacao {
         this.id = id;
     }
 
-    public Tipo getTipo_id() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo_id(Tipo tipo_id) {
+    public void setTipo(Tipo tipo_id) {
         this.tipo = tipo_id;
     }
 
@@ -59,11 +64,11 @@ public class Transacao {
         this.valor = valor;
     }
 
-    public Usuario getUsuario_id() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario_id(Usuario usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

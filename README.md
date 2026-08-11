@@ -21,4 +21,17 @@ Eu consegui criar a estrutura da API, criei com o Spring initializr, ainda estou
 
 ## dia 6/8 - Segundo dia
 
-Eu criei a entidade Transacao e agora pretendo criar a de usuario pra executar as função de transacao
+1) [x] Eu criei a entidade Transacao e agora pretendo criar a de usuario pra executar as funções de transacao; 
+2) [x] Planejo tambem fazer a Controler de usuario pras aplicações da API 
+   3) falta testar a API a unica rota que eu fiz.
+
+## dia 7/8 - Terceiro dia
+1) [x] criar os metodos de ususario e tipo de transacao
+2) [x] criar os metodos de transacao
+
+- Obstáculos 
+   - no método de buscar transações por id eu to meio perdido em como o jpa faz a query, esse lance dele entender pelo o nome do metodo assinado na interface me confundi, acho que fiz bagunça com o nome do atributo
+     - o tipo de dado em um atributo assin lado com uma flag de relacionamento entre tabelas tem que ser sempre o objeto da classe que representa a tabela relacionada.
+
+## dia 11/8 - Quarto dia
+1) terminei de criar os metodos e eles tambem estao funcionando via Postman ou via arquivo http aqui no intellij mesmo, Parece que a API esta funcional

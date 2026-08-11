@@ -1,4 +1,4 @@
-@id = 1
+@id = 3
 
 ### post pra criar um usuario --- funcional
 POST {{endpoint_base}}/faz_usuario
@@ -25,7 +25,7 @@ POST {{endpoint_base}}/faz_tipo
 Content-Type: application/json
 
 {
-  "nome": "acidentes "
+  "nome": "acidentes"
 }
 
 ### post pra fazer trasações
@@ -34,6 +34,10 @@ POST {{endpoint_base}}/{{id}}/faz_transacao
 Content-Type: application/json
 
 {
-  "valor": 3000.0,
-  "nome": "acidentes"
+  "valor": -3000.0,
+  "nomeTipo": "aluguel"
 }
+
+### get pra consultar historico
+
+GET {{endpoint_base}}/{{id}}/transacoes

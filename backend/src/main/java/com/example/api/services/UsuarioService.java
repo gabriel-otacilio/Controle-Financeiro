@@ -47,12 +47,11 @@ public class UsuarioService {
     public Transacao FazerTransacao(TransacaoDTO transacaoDTO, Long id_usuario){
 
         Double valor = transacaoDTO.valor;
-        Tipo tipoTransacao = tipoRepository.findByNome(transacaoDTO.nomeTipo);
-        // ta retornando nulo
-        System.out.println(tipoTransacao
-        );
-        System.out.println(valor);
+        Tipo tipoTransacao = tipoRepository.findTipoByNome((String) transacaoDTO.nomeTipo);
         Usuario usuario = usuarioRepository.findById(id_usuario).orElseThrow();
+        System.out.println(valor);
+        System.out.println(tipoTransacao);
+
 
         if (tipoTransacao == null || valor == null){
             throw new IllegalArgumentException("tipo de transação ou valor nao válidos");
@@ -67,8 +66,15 @@ public class UsuarioService {
     }
 
 
-    public List<Transacao> consultarHistorico(Long id_usuario){
-        return transacaoRepository.findByUsuario_Id(id_usuario);
+    public List<TransacaoDTO> consultarHistorico(Long id_usuario){
+        List<Transacao> transacoes= transacaoRepository.findByUsuario_Id(id_usuario);
+
+        return transacoes.stream().map(
+                (transacao -> new TransacaoDTO(transacao.getValor(), transacao.getTipo().getNome()))
+        ).toList();
+
+        // todo fazer DTO pra esse caso
+        //como que eu retorno uma DTO
     }
 
     @Transactional

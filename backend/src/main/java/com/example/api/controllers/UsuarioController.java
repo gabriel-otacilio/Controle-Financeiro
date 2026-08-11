@@ -28,7 +28,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}/transacoes")
-    public List<Transacao> consultaHistorico(@PathVariable Long id){
+    public List<TransacaoDTO> consultaHistorico(@PathVariable Long id){
         return usuarioService.consultarHistorico(id);
     }
 
@@ -54,7 +54,10 @@ public class UsuarioController {
 
     @PostMapping("/{id}/faz_transacao")
     public void fazTransacao(@RequestBody TransacaoDTO transacaoDto, @PathVariable Long id){
+        System.out.println(transacaoDto.nomeTipo);
         usuarioService.FazerTransacao(transacaoDto,id);
     }
+
+
 }
 // eu recebo o id do usuario via url, o nome do tipo, e o valor
