@@ -1,4 +1,4 @@
-name: MkDocs
+name: Deploy Documentation
 
 on:
   push:
@@ -7,6 +7,11 @@ on:
     paths:
       - '**.md'
       - 'mkdocs.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -21,10 +26,32 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Instalar MkDocs
+      - name: Instalar dependências
         run: |
           pip install mkdocs
           pip install mkdocs-material
 
-      - name: Gerar documentação
+      - name: Build MkDocs
         run: mkdocs build
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload do site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy para GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
