@@ -1,0 +1,30 @@
+name: MkDocs
+
+on:
+  push:
+    branches:
+      - docs
+    paths:
+      - '**.md'
+      - 'mkdocs.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Instalar MkDocs
+        run: |
+          pip install mkdocs
+          pip install mkdocs-material
+
+      - name: Gerar documentação
+        run: mkdocs build
