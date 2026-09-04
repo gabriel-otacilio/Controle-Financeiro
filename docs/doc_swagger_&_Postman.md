@@ -15,7 +15,7 @@ Deixando claro que o swagger nao substitui o Postman, tendo em vista que o swagg
 
 
 ordem pra estudar as funcionalidades do OpenAPI
-1) Swagger automatico
+1) Swagger automatico;
 2) @Operation
 3) @Parameter
 4) @APIResponse
