@@ -42,3 +42,8 @@ Eu consegui criar a estrutura da API, criei com o Spring initializr, ainda estou
 
 # documentação com o swagger
 
+Funcionalidades a implementar
+
+- atualizar saldo quando fazer transações
+- separar tipos por usuario
+- login
