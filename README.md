@@ -36,6 +36,12 @@ Eu consegui criar a estrutura da API, criei com o Spring initializr, ainda estou
 ## dia 11/8 - Quarto dia
 1) terminei de criar os metodos e eles tambem estao funcionando via Postman ou via arquivo http aqui no intellij mesmo, Parece que a API esta funcional
 
+# front end
+
+# autenticação 
+
+# documentação com o swagger
+
 Funcionalidades a implementar
 
 - atualizar saldo quando fazer transações
