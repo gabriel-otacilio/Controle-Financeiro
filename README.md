@@ -36,8 +36,8 @@ Eu consegui criar a estrutura da API, criei com o Spring initializr, ainda estou
 ## dia 11/8 - Quarto dia
 1) terminei de criar os metodos e eles tambem estao funcionando via Postman ou via arquivo http aqui no intellij mesmo, Parece que a API esta funcional
 
-Funcionalidades a implementar:
+Funcionalidades a implementar
 
-1) separar tipos por usuario
-2) login
-3) atualizar saldo quando fazer transações
+- atualizar saldo quando fazer transações
+- separar tipos por usuario
+- login
